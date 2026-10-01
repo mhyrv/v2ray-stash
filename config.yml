@@ -1,0 +1,24 @@
+# ── Which Telegram chats to read ─────────────────────────────────────────────
+# mode: web  → public CHANNELS only. No login needed (reads https://t.me/s/<name>).
+# mode: api  → groups, private chats, channels with no web preview.
+#              Needs a Telegram login stored as GitHub secrets (see README).
+# `name` can be a username, a t.me link, or a numeric chat id (api mode).
+sources:
+  - { name: https://t.me/vpnine1, mode: web }
+  - { name: example_channel_2, mode: web }
+  - { name: example_channel_3, mode: web }
+  - { name: example_group_1,   mode: api }
+
+window_hours: 12                 # only posts newer than this are scanned
+
+follow_subscription_links: true  # open links found in posts and read the configs inside
+
+test:
+  url: http://www.gstatic.com/generate_204   # fetched THROUGH each config; must answer 200/204
+  timeout: 8                                  # seconds per config
+  workers: 30                                 # Xray instances running in parallel
+  max_candidates: 2500                        # safety cap on how many configs get tested
+
+output:
+  max_configs: 300       # publish only the N fastest
+  keep_previous: true    # re-test last run's winners too, so the list doesn't shrink between runs
