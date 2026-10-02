@@ -79,7 +79,8 @@ def main():
     delays = check.run({k: ob for k, (_, ob) in cand.items()},
                        test.get("url", "http://www.gstatic.com/generate_204"),
                        test.get("timeout", 8), test.get("workers", 30))
-    ranked = sorted(delays, key=delays.get)[: out.get("max_configs", 300)]
+    fast = {k: ms for k, ms in delays.items() if ms <= out.get("max_delay_ms", 300)}
+    ranked = sorted(fast, key=fast.get)[: out.get("max_configs", 300)]
     print(f"{len(delays)} alive, publishing {len(ranked)}")
     if not ranked:
         sys.exit("nothing passed the delay test - leaving the previous output untouched")
