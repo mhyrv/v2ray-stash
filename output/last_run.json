@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-27T02:14:59+00:00",
+  "updated": "2026-11-27T10:57:03+00:00",
   "window_hours": 12,
-  "posts_scanned": 50,
-  "candidates_tested": 565,
-  "alive": 364,
-  "published": 300
+  "posts_scanned": 40,
+  "candidates_tested": 484,
+  "alive": 288,
+  "published": 277
 }
